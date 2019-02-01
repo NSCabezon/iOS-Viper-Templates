@@ -8,9 +8,9 @@ Only need execute this command in terminal:
 sudo swift install.swift
 ```
 You should be this output message:
-
-![](assets/terminal.png)
-
+```
+✅  Template installed succesfully 🎉. Enjoy it 🙂
+```
 If all it's ok you now could find your template in Xcode.
 
 ### Manual
