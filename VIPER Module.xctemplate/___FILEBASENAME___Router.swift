@@ -8,7 +8,7 @@ protocol ___VARIABLE_productName:identifier___WireframeProtocol: class {
 
 class ___VARIABLE_productName:identifier___Router: ___VARIABLE_productName:identifier___WireframeProtocol {
     
-    weak var viewController: UIViewController?
+    weak var viewController: ___VARIABLE_productName:identifier___ViewController?
     
     static func createModule() -> ___VARIABLE_productName:identifier___ViewController {
         // Change to get view from storyboard if not using progammatic UI
