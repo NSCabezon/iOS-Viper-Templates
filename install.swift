@@ -8,7 +8,7 @@
 
 import Foundation
 
-let templateName = "VIPER Module.xctemplate"
+let templateNames = ["VIPER Module.xctemplate", "PresenterTests.xctemplate", "VIPER Module UITableView.xctemplate", "InteractorTests.xctemplate"]
 let destinationRelativePath = "/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/Project Templates/iOS/Application"
 
 func printInConsole(_ message:Any){
@@ -20,18 +20,21 @@ func printInConsole(_ message:Any){
 func moveTemplate() {
 	let fileManager = FileManager.default
 	let destinationPath = bash(command: "xcode-select", arguments: ["--print-path"]).appending(destinationRelativePath)
-	do {
-		let path = "\(destinationPath)/\(templateName)"
-		if !fileManager.fileExists(atPath: path) {
-			try fileManager.copyItem(atPath: templateName, toPath: path)
-			printInConsole("✅  Template installed succesfully 🎉. Enjoy it 🙂")
-		} else {
-			try _ = fileManager.replaceItemAt(URL(fileURLWithPath: path), withItemAt: URL(fileURLWithPath: templateName))
-			printInConsole("✅  Template already exists. So has been replaced succesfully 🎉. Enjoy it 🙂")
+	
+	for templateName in templateNames {
+		do {
+			let path = "\(destinationPath)/\(templateName)"
+			if !fileManager.fileExists(atPath: path) {
+				try fileManager.copyItem(atPath: templateName, toPath: path)
+				printInConsole("✅  Template '\(templateName)' installed succesfully 🎉. Enjoy it 🙂")
+			} else {
+				try _ = fileManager.replaceItemAt(URL(fileURLWithPath: path), withItemAt: URL(fileURLWithPath: templateName))
+				printInConsole("✅  Template '\(templateName)' already exists. So has been replaced succesfully 🎉. Enjoy it 🙂")
+			}
 		}
-	}
-	catch let error as NSError {
-		printInConsole("❌  Ooops! Something went wrong 😡 : \(error.localizedFailureReason!)")
+		catch let error as NSError {
+			printInConsole("❌  Ooops! Something went wrong 😡 : \(error.localizedFailureReason!)")
+		}
 	}
 }
 
