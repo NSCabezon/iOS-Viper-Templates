@@ -30,7 +30,7 @@ class ___VARIABLE_productName:identifier___ViewController: UIViewController, ___
 	func configureUI() {
 		tableView.delegate = self
 		tableView.dataSource = self
-		tableView.registerCells(nibsArray: [<#cellName#>])
+		tableView.registerNib(<#cellName#>)
     }
     
     class func initFromStoryboard() -> ___VARIABLE_productName:identifier___ViewController {
@@ -49,7 +49,7 @@ extension ___VARIABLE_productName:identifier___ViewController: UITableViewDelega
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		if let cell = tableView.dequeueReusableCell(withIdentifier: <#cellName#>.nibString()) as? <#cellName#> {
+		if let cell = tableView.dequeueReusableCell(cellType: <#cellName#>) {
 			
 			return cell
 		}
