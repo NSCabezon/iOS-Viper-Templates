@@ -25,6 +25,7 @@ class ___VARIABLE_productName:identifier___ViewController: UIViewController, ___
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
+		configureUI()
 	}
 	
 	func configureUI() {
