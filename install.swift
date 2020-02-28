@@ -24,13 +24,13 @@ func moveTemplate() {
 	for templateName in templateNames {
 		do {
 			let path = "\(destinationPath)/\(templateName)"
-			if !fileManager.fileExists(atPath: path) {
-				try fileManager.copyItem(atPath: templateName, toPath: path)
-				printInConsole("✅  Template '\(templateName)' installed succesfully 🎉. Enjoy it 🙂")
-			} else {
-				try _ = fileManager.replaceItemAt(URL(fileURLWithPath: path), withItemAt: URL(fileURLWithPath: templateName))
+			if fileManager.fileExists(atPath: path) {
+				try fileManager.removeItem(atPath: path)
 				printInConsole("✅  Template '\(templateName)' already exists. So has been replaced succesfully 🎉. Enjoy it 🙂")
+			} else {
+				printInConsole("✅  Template '\(templateName)' installed succesfully 🎉. Enjoy it 🙂")
 			}
+			try fileManager.copyItem(atPath: templateName, toPath: path)
 		}
 		catch let error as NSError {
 			printInConsole("❌  Ooops! Something went wrong 😡 : \(error.localizedFailureReason!)")
@@ -38,8 +38,7 @@ func moveTemplate() {
 	}
 }
 
-func shell(launchPath: String, arguments: [String]) -> String
-{
+func shell(launchPath: String, arguments: [String]) -> String {
 	let task = Process()
 	task.launchPath = launchPath
 	task.arguments = arguments
